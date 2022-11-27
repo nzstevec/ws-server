@@ -1,0 +1,11 @@
+POST http://localhost:8090/send
+Content-Type: application/json
+
+{"from": "someone","text":  "hello cruel world"}
+
+###
+
+POST http://localhost:8090/send
+Content-Type: application/json
+
+{"from": "someone","text":  "ping2"}
