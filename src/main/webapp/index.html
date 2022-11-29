@@ -19,35 +19,19 @@
 
 	        function connect() {
 
-	            var socket = new SockJS('/ws-message');
-	            stompClient = Stomp.over(socket);
+						var socket = new SockJS('/room');
+						var stompClient = Stomp.over(socket);
+						var sessionId = "";
 
-	            stompClient.connect({}, function(frame) {
-
-	            	setConnected(true);
-	                console.log('Connected: ' + frame);
-	                stompClient.subscribe('/topic/messages', function(messageOutput) {
-
-	                    showMessageOutput(JSON.parse(messageOutput.body));
-	                });
-	            });
+						stompClient.connect({}, function (frame) {
+							var url = stompClient.ws._transport.url;
+							url = url.replace("ws://localhost:8090/room/",  "");
+							url = url.replace("/websocket", "");
+							url = url.replace(/^[0-9]+\//, "");
+							console.log("Your current session is: " + url);
+							sessionId = url;
+						})
 	        }
-
-			function connectUser() {
-
-				var socket = new SockJS('/message');
-				stompClient = Stomp.over(socket);
-
-				stompClient.connect({}, function(frame) {
-
-					setConnected(true);
-					console.log('Connected: ' + frame);
-					stompClient.subscribe('/topic/messages', function(messageOutput) {
-
-						showMessageOutput(JSON.parse(messageOutput.body));
-					});
-				});
-			}
 
 	        function disconnect() {
 
@@ -90,7 +74,6 @@
 			<br />
 		    <div>
 		        <button id="connect" onclick="connect();">Connect</button>
-				<button id="connectUser" onclick="connectUser();">Connect User</button>
 		        <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
 		    </div>
 		    <br />

@@ -1,7 +1,7 @@
 POST http://localhost:8090/send
 Content-Type: application/json
 
-{"from": "someone","text":  "hello cruel world"}
+{"to": "dodo","from": "someone","text":  "hello cruel world"}
 
 ###
 

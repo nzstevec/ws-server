@@ -1,8 +1,17 @@
 package com.clogic.wsserver;
 
 public class MessageDto {
+    private String to;
     private String from;
     private String text;
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
 
     public String getFrom() {
         return from;
@@ -23,8 +32,9 @@ public class MessageDto {
     @Override
     public String toString() {
         return "MessageDto{" +
-                "from='" + from + '\'' +
-                ", text='" + text + '\'' +
-                '}';
+            "to='" + to + '\'' +
+            ", from='" + from + '\'' +
+            ", text='" + text + '\'' +
+            '}';
     }
 }
